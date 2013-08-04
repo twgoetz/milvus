@@ -1,0 +1,23 @@
+rule r01 {
+  # A comment
+  scope Sentence s;
+  base Token;
+  var LexicalAnnotation annot;
+  prod TestAnnot -> /.*/ annot;
+  let annot.base = text(lex);  
+  check annot.pos = adj & (annot.text = "foo" | annot.text = "bar");
+}
+
+rule r02 {
+  base Document.text;
+  match partial;
+  regex Word -> /[^ \n\r\t]+/;
+}
+
+rule r3 {
+  dictionary "name of dictionary";
+  base Token;
+  match full;
+  return NamedEntity;
+}
+

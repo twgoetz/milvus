@@ -1,0 +1,13 @@
+# a comment
+rule r01 {
+  # A comment
+  var LexicalAnnotation annot;  # more comments
+  var foo bar;
+}
+
+rule r02 {
+  var Document doc;
+}
+
+
+
