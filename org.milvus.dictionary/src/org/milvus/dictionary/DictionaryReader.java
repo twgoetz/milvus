@@ -108,7 +108,7 @@ public class DictionaryReader {
       DictionaryReader dictReader = new DictionaryReader();
       List<String> dictEntries = dictReader.readDictionary(dictionaryFile);
       StringTree<Object> tree = dictReader.stringList2Tree(dictEntries);
-      System.out.println(tree);
+//      System.out.println(tree);
       String text = FileUtils.readFileToString(new File(textFileName), DEFAULT_ENCODING);
       SentenceDetectorFactory sdf = new SentenceDetectorFactory();
       EndOfSentenceScanner eosScanner = sdf.getEndOfSentenceScanner();
