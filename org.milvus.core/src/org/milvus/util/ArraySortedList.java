@@ -8,8 +8,9 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class ArraySortedList<T extends Comparable<T>> implements SortedList<T> {
 
+  // TODO: add some error handling
   private T[] array = null;
-  
+
   @Override
   public T get(int i) {
     return this.array[i];
@@ -71,6 +72,14 @@ public class ArraySortedList<T extends Comparable<T>> implements SortedList<T> {
   @Override
   public Iterator<T> iterator() {
     return Arrays.asList(this.array).iterator();
+  }
+
+  @Override
+  public int size() {
+    if (this.array == null) {
+      return 0;
+    }
+    return this.array.length;
   }
 
 }

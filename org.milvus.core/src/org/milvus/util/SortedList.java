@@ -19,4 +19,6 @@ public interface SortedList<T extends Comparable<T>> extends Iterable<T>{
   
   void addAll(Collection<T> collection);
   
+  int size();
+  
 }

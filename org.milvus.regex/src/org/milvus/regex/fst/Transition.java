@@ -32,4 +32,5 @@ public class Transition implements Comparable<Transition> {
   public int compareTo(Transition o) {
     return this.range.compareTo(o.range);
   }
+  
 }

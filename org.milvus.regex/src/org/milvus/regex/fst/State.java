@@ -7,6 +7,7 @@ public class State {
 
   private boolean isFinal;
   private SortedList<Transition> transitions;
+  private int index = 0;
   
   public State(boolean isFinal) {
     super();
@@ -29,7 +30,27 @@ public class State {
   public SortedList<Transition> getTransitions() {
     return this.transitions;
   }
+
+  public int getIndex() {
+    return this.index;
+  }
+
+  public void setIndex(int index) {
+    this.index = index;
+  }
   
+  @Override
+  public int hashCode() {
+    return getIndex();
+  }
+  
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof State) {
+      return ((State) o).getIndex() == getIndex();
+    }
+    return false;
+  }
 
 }
 

@@ -4,6 +4,9 @@ import static org.milvus.regex.fst.CharRange.Type.CHAR;
 import static org.milvus.regex.fst.CharRange.Type.EPSILON;
 import static org.milvus.regex.fst.CharRange.Type.RANGE;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CharRange implements Comparable<CharRange> {
   
   public static enum Type {
@@ -54,6 +57,23 @@ public class CharRange implements Comparable<CharRange> {
     return 0;
   }
   
-  
+  public static final List<CharRange> makeNonOverlapping(CharRange r1, CharRange r2) {
+    List<CharRange> list = new ArrayList<CharRange>();
+    switch (r1.type) {
+    case CHAR: {
+      
+      break;
+    }
+    case RANGE: {
+      
+      break;
+    }
+    case EPSILON: {
+      // this case can not occur as we are only applying this after epsilon removal
+      break;
+    }
+    }
+    return list;
+  }
   
 }
