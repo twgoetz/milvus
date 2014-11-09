@@ -1,24 +1,12 @@
 package org.milvus.util;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
- * TODO: Create type commment.
+ * TODO: remove. No longer used.
  */
-public interface SortedList<T extends Comparable<T>> extends Iterable<T>{
+public interface SortedList<T extends Comparable<T>> extends List<T>{
 
-  T get(int i);
-  
-  T contains(T element);
-  
-  void insert(T element);
-  
-  int find(T element);
-  
-  void remove(int i);
-  
-  void addAll(Collection<T> collection);
-  
-  int size();
+  int insert(T element);
   
 }

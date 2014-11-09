@@ -1,18 +1,20 @@
 package org.milvus.regex.fst;
 
-import org.milvus.util.ArraySortedList;
-import org.milvus.util.SortedList;
+import java.util.List;
 
-public class State {
+import org.milvus.util.SortedArrayList;
+
+public class State implements Comparable<State> {
 
   private boolean isFinal;
-  private SortedList<Transition> transitions;
+  private List<Transition> transitions;
+  // An internal index that is used for matrix computations such as transitive closure
   private int index = 0;
   
   public State(boolean isFinal) {
     super();
     this.isFinal = isFinal;
-    this.transitions = new ArraySortedList<Transition>();
+    this.transitions = new SortedArrayList<Transition>();
   }
   
   public boolean isFinal() {
@@ -24,10 +26,10 @@ public class State {
   }
 
   public void addTransition(Transition trans) {
-    this.transitions.insert(trans);
+    this.transitions.add(trans);
   }
   
-  public SortedList<Transition> getTransitions() {
+  public List<Transition> getTransitions() {
     return this.transitions;
   }
 
@@ -47,9 +49,20 @@ public class State {
   @Override
   public boolean equals(Object o) {
     if (o instanceof State) {
-      return ((State) o).getIndex() == getIndex();
+      return compareTo((State) o) == 0;
     }
     return false;
+  }
+
+  @Override
+  public int compareTo(State o) {
+    if (this.index < o.index) {
+      return -1;
+    }
+    if (this.index > o.index) {
+      return 1;
+    }
+    return 0;
   }
 
 }

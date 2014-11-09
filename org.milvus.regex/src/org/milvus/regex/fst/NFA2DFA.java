@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-import org.milvus.util.SortedList;
 import org.milvus.util.TransitiveClosure;
 
 public abstract class NFA2DFA {
@@ -16,7 +15,7 @@ public abstract class NFA2DFA {
     List<State> states = nfa.getStates();
     boolean[][] epsilonTransitionMatrix = emptyAdjacencyMatrix(states.size());
     for (State q0 : states) {
-      SortedList<Transition> transitions = q0.getTransitions();
+      List<Transition> transitions = q0.getTransitions();
       for (int i = 0; i < transitions.size(); i++) {
         Transition delta = transitions.get(i);
         if (delta.getRange() == CharRange.getEpsilon()) {
@@ -31,7 +30,7 @@ public abstract class NFA2DFA {
       for (int j = 0; j < states.size(); j++) {
         // skip transitions into the state itself
         if (i != j && epsilonTransitionMatrix[i][j]) {
-          SortedList<Transition> transitions = states.get(j).getTransitions();
+          List<Transition> transitions = states.get(j).getTransitions();
           State q0 = states.get(i);
           for (Transition delta : transitions) {
             q0.addTransition(delta);
@@ -49,7 +48,7 @@ public abstract class NFA2DFA {
     List<State> states = nfa.getStates();
     boolean[][] reachable = emptyAdjacencyMatrix(states.size());
     for (State state : states) {
-      SortedList<Transition> transitions = state.getTransitions();
+      List<Transition> transitions = state.getTransitions();
       for (Transition delta : transitions) {
         State target = delta.getTarget();
         reachable[state.getIndex()][target.getIndex()] = true;
@@ -65,7 +64,7 @@ public abstract class NFA2DFA {
     }
   }
   
-  private static final void removeEpsilonTransitions(SortedList<Transition> transitions) {
+  private static final void removeEpsilonTransitions(List<Transition> transitions) {
     int i = 0;
     while (i < transitions.size()) {
       if (transitions.get(i).getRange() == CharRange.getEpsilon()) {

@@ -29,8 +29,12 @@ public class Transition implements Comparable<Transition> {
   }
 
   @Override
-  public int compareTo(Transition o) {
-    return this.range.compareTo(o.range);
+  public int compareTo(Transition trans) {
+    int comp = this.range.compareTo(trans.range);
+    if (comp == 0) {
+      this.targetState.compareTo(trans.targetState);
+    }
+    return comp;
   }
   
 }

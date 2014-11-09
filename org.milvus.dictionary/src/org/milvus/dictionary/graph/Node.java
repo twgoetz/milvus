@@ -51,7 +51,7 @@ public class Node {
     this.charTransition = new char[this.charTransition.length + 1];
     char lastChar = oldChars[oldChars.length - 1];
     if (c > lastChar) {
-      // This is the expected case if entries come in in sorted order
+      // This is the expected case if entries come in sorted order
       System.arraycopy(oldChars, 0, this.charTransition, 0, oldChars.length);
       this.charTransition[oldChars.length] = c;
       return oldChars.length;

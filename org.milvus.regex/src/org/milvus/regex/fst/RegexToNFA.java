@@ -11,7 +11,6 @@ import org.milvus.regex.syntax.Plus;
 import org.milvus.regex.syntax.Regex;
 import org.milvus.regex.syntax.Sequence;
 import org.milvus.regex.syntax.StarClosure;
-import org.milvus.util.SortedList;
 
 public abstract class RegexToNFA {
 
@@ -21,7 +20,7 @@ public abstract class RegexToNFA {
     switch (regex.type) {
     case CHARS: {
       NFA nfa = new NFA();
-      SortedList<CharRange> ranges = ((Chars) regex).getChars();
+      List<CharRange> ranges = ((Chars) regex).getChars();
       for (CharRange range : ranges) {
         Transition trans = new Transition(range, nfa.getFinalState());
         nfa.getStartState().addTransition(trans);
